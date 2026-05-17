@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.diffplug.spotless' version '6.25.0'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+application {
+    mainClass = 'de.hsbi.lockgame.Main'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+/*
+ * Spotless Konfiguration
+ */
+spotless {
+    java {
+        googleJavaFormat('1.17.0')
+
+        // 4 spaces (wichtig für Aufgabe)
+        indentWithSpaces(4)
+
+        // lange Zeilen umbrechen
+        importOrder()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}

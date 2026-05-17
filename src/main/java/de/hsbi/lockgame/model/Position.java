@@ -16,4 +16,14 @@ public final class Position {
   public int y() {
     return y;
   }
+
+    @Override
+  public boolean equals(Object o) {
+      if (o instanceof Position) {
+          if (((Position) o).x == x && ((Position) o).y == y) {
+              return true;
+          }
+      }
+      return false;
+  }
 }
